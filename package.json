@@ -1,0 +1,49 @@
+{
+  "name": "deltadsl",
+  "displayName": "DeltaDSL — MRD Indicator Script",
+  "description": "Syntax highlighting + snippets for DeltaDSL (.dsl) — the indicator scripting language of MRD Indicators.",
+  "version": "0.1.0",
+  "publisher": "mrd",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "icon": "icon.png",
+  "galleryBanner": {
+    "color": "#0F1215",
+    "theme": "dark"
+  },
+  "engines": {
+    "vscode": "^1.70.0"
+  },
+  "categories": ["Programming Languages", "Snippets"],
+  "keywords": ["deltadsl", "dsl", "mrd", "trading", "indicator", "pinescript-alternative"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PhamNhinh/vscode-deltadsl.git"
+  },
+  "bugs": {
+    "url": "https://github.com/PhamNhinh/vscode-deltadsl/issues"
+  },
+  "homepage": "https://github.com/PhamNhinh/vscode-deltadsl#readme",
+  "contributes": {
+    "languages": [
+      {
+        "id": "deltadsl",
+        "aliases": ["DeltaDSL", "MRD Script", "Delta DSL"],
+        "extensions": [".dsl", ".mrd"],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "deltadsl",
+        "scopeName": "source.deltadsl",
+        "path": "./syntaxes/deltadsl.tmLanguage.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "deltadsl",
+        "path": "./snippets/deltadsl.json"
+      }
+    ]
+  }
+}

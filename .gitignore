@@ -1,0 +1,13 @@
+# Build artifacts — attach to GitHub Releases, do not commit
+*.vsix
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Editor junk
+.vscode-test/
+node_modules/
+
+# Logs
+*.log

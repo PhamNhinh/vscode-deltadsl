@@ -1,0 +1,214 @@
+{
+  "Script header": {
+    "prefix": "header",
+    "description": "Boilerplate: @version + @name + @pane",
+    "body": [
+      "@version 1",
+      "@name \"${1:My Indicator}\"",
+      "@pane \"${2|overlay,below|}\"",
+      "",
+      "$0"
+    ]
+  },
+  "@version": {
+    "prefix": "@version",
+    "description": "Pin script to a Delta DSL language version",
+    "body": ["@version ${1:1}"]
+  },
+  "@name": {
+    "prefix": "@name",
+    "description": "Display name shown in the indicator panel",
+    "body": ["@name \"${1:Indicator name}\""]
+  },
+  "@pane overlay": {
+    "prefix": "@pane-overlay",
+    "description": "Draw ON the candle pane in price space",
+    "body": ["@pane \"overlay\""]
+  },
+  "@pane below": {
+    "prefix": "@pane-below",
+    "description": "Reserve a band at the bottom of the candle area",
+    "body": ["@pane \"below\""]
+  },
+  "@input int": {
+    "prefix": "@input-int",
+    "description": "Integer @input parameter",
+    "body": [
+      "@input ${1:period} = input.int(${2:14}, \"${3:Period}\", minval=${4:2}, maxval=${5:200}, step=${6:1})"
+    ]
+  },
+  "@input float": {
+    "prefix": "@input-float",
+    "description": "Decimal @input parameter",
+    "body": [
+      "@input ${1:mult} = input.float(${2:2.0}, \"${3:Multiplier}\", minval=${4:0.1}, maxval=${5:10.0}, step=${6:0.1})"
+    ]
+  },
+  "@input bool": {
+    "prefix": "@input-bool",
+    "description": "Boolean @input parameter (toggle)",
+    "body": [
+      "@input ${1:flag} = input.bool(${2:true}, \"${3:Label}\")"
+    ]
+  },
+  "@input source": {
+    "prefix": "@input-source",
+    "description": "OHLCV source picker",
+    "body": [
+      "@input ${1:src} = input.source(\"${2|close,open,high,low,hl2,hlc3,ohlc4,volume|}\", \"${3:Source}\")"
+    ]
+  },
+  "@input color": {
+    "prefix": "@input-color",
+    "description": "Colour picker @input",
+    "body": [
+      "@input ${1:lineColor} = input.color(\"${2:#F0B90B}\", \"${3:Line color}\")"
+    ]
+  },
+  "@input string dropdown": {
+    "prefix": "@input-dropdown",
+    "description": "Dropdown @input (string with options)",
+    "body": [
+      "@input ${1:mode} = input.string(\"${2:Linear}\", \"${3:Mode}\", options=\"${4:Linear,Log,Exponential}\")"
+    ]
+  },
+
+  "if / elseif / else / end": {
+    "prefix": "if",
+    "description": "Block-level if/elseif/else/end",
+    "body": [
+      "if ${1:cond}",
+      "\t$2",
+      "elseif ${3:cond2}",
+      "\t$4",
+      "else",
+      "\t$5",
+      "end"
+    ]
+  },
+  "for loop": {
+    "prefix": "for",
+    "description": "Scalar for-loop (script-eval time)",
+    "body": [
+      "for ${1:i} = ${2:0} to ${3:bars - 1}",
+      "\t$0",
+      "end"
+    ]
+  },
+  "fn (block)": {
+    "prefix": "fn",
+    "description": "User-defined function (block form with return)",
+    "body": [
+      "fn ${1:name}(${2:a}, ${3:b})",
+      "\t$0",
+      "\treturn ${4:expr}",
+      "end"
+    ]
+  },
+  "fn (inline)": {
+    "prefix": "fn-inline",
+    "description": "User-defined function (inline form)",
+    "body": [
+      "fn ${1:name}(${2:a}, ${3:b}) = ${4:a + b}"
+    ]
+  },
+
+  "plotLine": {
+    "prefix": "plotLine",
+    "description": "Smooth polyline through a series",
+    "body": [
+      "plotLine(${1:series}, color=\"${2:#F0B90B}\", width=${3:1.5})"
+    ]
+  },
+  "plotHline": {
+    "prefix": "plotHline",
+    "description": "Horizontal price line",
+    "body": [
+      "plotHline(${1:price}, color=\"${2:#F0B90B}\", width=${3:1})"
+    ]
+  },
+  "plotBand": {
+    "prefix": "plotBand",
+    "description": "Filled band between two series",
+    "body": [
+      "plotBand(${1:upper}, ${2:lower}, color=\"${3:rgba(240,185,11,0.08)}\")"
+    ]
+  },
+  "plotMarkerUp": {
+    "prefix": "plotMarkerUp",
+    "description": "Up triangle on truthy bars",
+    "body": [
+      "plotMarkerUp(${1:boolSeries}, ${2:priceSeries}, color=\"${3:#0ECB81}\", size=${4:6})"
+    ]
+  },
+  "plotMarkerDown": {
+    "prefix": "plotMarkerDown",
+    "description": "Down triangle on truthy bars",
+    "body": [
+      "plotMarkerDown(${1:boolSeries}, ${2:priceSeries}, color=\"${3:#F6465D}\", size=${4:6})"
+    ]
+  },
+  "paneLine + paneRange": {
+    "prefix": "pane-osc",
+    "description": "Sub-pane oscillator scaffold (RSI/MACD-style)",
+    "body": [
+      "@pane \"below\"",
+      "paneRange(${1:0}, ${2:100})",
+      "paneHline(${3:70}, color=\"#F6465D\", width=1)",
+      "paneHline(${4:30}, color=\"#0ECB81\", width=1)",
+      "paneLine(${5:series}, color=\"#F0B90B\", width=1.5)"
+    ]
+  },
+
+  "alertcondition": {
+    "prefix": "alertcondition",
+    "description": "Declarative alert (saved to alert_manifest)",
+    "body": [
+      "alertcondition(${1:cond}, title=\"${2:Title}\", message=\"${3:{{symbol}} crossed at {{close}}}\", frequency=\"${4|once_per_close,once_per_bar,every,once|}\")"
+    ]
+  },
+  "alert (imperative)": {
+    "prefix": "alert",
+    "description": "Imperative Pine-style alert",
+    "body": [
+      "alert(\"${1:message}\", \"${2|once_per_close,once_per_bar,every,once|}\")"
+    ]
+  },
+
+  "labelNew (persistent)": {
+    "prefix": "labelNew",
+    "description": "Persistent label chip (string-slot)",
+    "body": [
+      "labelNew(\"${1:slot}\", ${2:time}, ${3:price}, \"${4:text}\", color=\"${5:#FFFFFF}\", bg=\"${6:rgba(0,0,0,0.6)}\", size=${7:11})"
+    ]
+  },
+  "lineNew (persistent)": {
+    "prefix": "lineNew",
+    "description": "Persistent trendline (string-slot)",
+    "body": [
+      "lineNew(\"${1:slot}\", ${2:t1}, ${3:p1}, ${4:t2}, ${5:p2}, color=\"${6:#F0B90B}\", width=${7:1.5})"
+    ]
+  },
+  "boxNew (persistent)": {
+    "prefix": "boxNew",
+    "description": "Persistent rectangle (string-slot)",
+    "body": [
+      "boxNew(\"${1:slot}\", ${2:t1}, ${3:p1}, ${4:t2}, ${5:p2}, bgColor=\"${6:rgba(240,185,11,0.15)}\", borderColor=\"${7:#F0B90B}\", width=${8:1})"
+    ]
+  },
+
+  "logInfo (snapshot)": {
+    "prefix": "logInfo",
+    "description": "Snapshot log of a value at the last bar",
+    "body": [
+      "logInfo(\"${1:fmt {0}}\", ${2:value})"
+    ]
+  },
+  "logInfo (conditional)": {
+    "prefix": "logInfo-cond",
+    "description": "Log on every TRUE bar of a condition series",
+    "body": [
+      "logInfo(${1:condition}, \"${2:fmt {0} {1}}\", ${3:a}, ${4:b})"
+    ]
+  }
+}

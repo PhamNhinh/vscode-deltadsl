@@ -1,0 +1,20 @@
+# Files that MUST NOT ship inside the .vsix bundle.
+
+# Dev / test scaffolding
+.vscode/**
+.vscode-test/**
+samples/**
+**/*.map
+**/.DS_Store
+**/node_modules/**
+
+# Source-repo scaffolding (not needed at runtime)
+.gitignore
+.vscodeignore
+
+# Safety: never ship dotfiles or env files even if accidentally
+# dropped here.
+.env
+.env.*
+*.pem
+*.key
