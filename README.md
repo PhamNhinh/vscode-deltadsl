@@ -1,134 +1,157 @@
-# DeltaDSL — VSCode / Cursor language extension
+# DeltaDSL Language Support
 
-Syntax highlighting + snippets for **DeltaDSL** — the indicator
+Official VSCode and Cursor extension for **DeltaDSL** — the indicator
 scripting language of [MRD Indicators](https://app.mrd-indicators.com).
-
-> Use the `.dsl` or `.mrd` file extension. **Do NOT use `.pine`** —
-> that extension belongs to TradingView Pine Script and using it
-> would conflict with Pine Script extensions like
-> `0xjcf.pine-script-syntax`.
-
----
+Write technical indicators, alerts, and chart overlays with first-class
+editor support.
 
 ## Features
 
-- Full syntax highlighting:
-  - Directives — `@version`, `@name`, `@input`, `@pane`
-  - Keywords — `if / elseif / else / end / for / to / step / fn /
-    return / and / or / not / true / false`
-  - Built-in series — `open high low close volume hl2 hlc3 ohlc4
-    time bar_index cvd open_interest funding_rate …`
-  - Built-in functions — `sma rsi macd_hist atr stdev pivothigh
-    htf_resample …`
-  - Drawing functions — `plotLine plotHline plotBand labelNew
-    lineNew drawingTrendline alertcondition logInfo …`
-  - Typed input builders — `input.int input.float input.bool
-    input.source input.color …`
-  - String placeholders `{{symbol}}` and color literals `"#F0B90B"`
-- 25+ snippets — type `header`, `@input-int`, `if`, `for`, `fn`,
-  `plotLine`, `alertcondition`, `pane-osc`, `labelNew` … then Tab
-  to expand
-- Smart indentation for `if / for / fn` blocks
-- Auto-closing brackets and quotes
+### Syntax highlighting
 
----
+Full TextMate grammar covering every construct of the language:
+
+- **Directives** — `@version`, `@indicator`, `@name`, `@pane`, `@input`
+- **Control flow** — `if`, `elseif`, `else`, `end`, `for`, `to`, `step`
+- **Functions** — `fn`, `return`, with both inline and block forms
+- **Logical operators** — `and`, `or`, `not`, `true`, `false`, `na`
+- **Market data series** — `open`, `high`, `low`, `close`, `volume`,
+  `hl2`, `hlc3`, `ohlc4`, `time`, `bar_index`, `cvd`, `open_interest`,
+  `funding_rate`
+- **Technical analysis library** — `sma`, `ema`, `wma`, `rsi`, `macd`,
+  `atr`, `stdev`, `bb`, `stoch`, `pivothigh`, `pivotlow`, `crossover`,
+  `crossunder`, and dozens more
+- **Drawing primitives** — `plotLine`, `plotHline`, `plotBand`,
+  `plotMarkerUp`, `plotMarkerDown`, `labelNew`, `lineNew`,
+  `drawingTrendline`, `bgcolor`
+- **Alert wiring** — `alertcondition`, `alert`
+- **Typed input builders** — `input.int`, `input.float`, `input.bool`,
+  `input.source`, `input.color`, `input.string`, `input.symbol`,
+  `input.timeframe`, `input.session`
+- **String placeholders** — `{{symbol}}`, `{{close}}`, `{{high}}`,
+  `{{low}}`, `{{time}}` inside alert messages
+- **Color literals** — inline `"#F0B90B"` and `"rgba(…)"` strings
+
+### Productivity snippets
+
+Over 25 ready-to-use snippets. Type the prefix, press `Tab`:
+
+| Prefix | Expands to |
+|---|---|
+| `header` | Full indicator header with `@version` / `@name` / `@pane` |
+| `@input-int` / `@input-float` / `@input-bool` / `@input-source` / `@input-color` | Typed input declaration |
+| `if` / `for` / `fn` | Block with matching `end` |
+| `plotLine` / `plotHline` / `plotBand` | Drawing call with named args |
+| `alertcondition` | Alert with title + message placeholders |
+| `pane-osc` | Oscillator pane scaffold |
+| `labelNew` | Persistent label drawing |
+| `logInfo` | Diagnostic log statement |
+
+### Editor behavior
+
+- Smart indentation for `if` / `for` / `fn` blocks
+- Auto-closing brackets and quotes
+- Comment toggle (`Cmd+/` or `Ctrl+/`)
+- Bracket matching and surround pairs
 
 ## Installation
 
-### Option 1: Search in Cursor / Open VSX (recommended once approved)
+### From the marketplace
 
-1. Open Cursor.
-2. Press `Cmd+Shift+X` (Mac) / `Ctrl+Shift+X` (Win/Linux) to open
-   Extensions panel.
-3. Search for **deltadsl**.
-4. Click **Install**.
+1. Open the Extensions panel — `Cmd+Shift+X` (Mac) or `Ctrl+Shift+X`
+   (Windows / Linux).
+2. Search for **DeltaDSL**.
+3. Click **Install**.
 
-> Status: pending review on [Open VSX](https://open-vsx.org). Until
-> approved, use Option 2.
+### From a VSIX file
 
-### Option 2: Install from VSIX file
+Download the latest `.vsix` from the
+[Releases page](https://github.com/PhamNhinh/vscode-deltadsl/releases),
+then either:
 
-1. Download the latest `deltadsl-X.Y.Z.vsix` from the
-   [Releases page](https://github.com/PhamNhinh/vscode-deltadsl/releases).
-2. Open Cursor / VSCode.
-3. Press `Cmd+Shift+P` (Mac) / `Ctrl+Shift+P` (Win/Linux).
-4. Type **"Install from VSIX"** → Enter.
-5. Pick the downloaded `.vsix` file.
-6. Reload window when prompted.
+- Open the command palette (`Cmd+Shift+P` / `Ctrl+Shift+P`), run
+  **"Extensions: Install from VSIX…"**, and select the downloaded file, or
+- Run the CLI:
 
-Or via terminal:
+  ```bash
+  cursor --install-extension deltadsl-0.1.1.vsix
+  # or for VSCode:
+  code --install-extension deltadsl-0.1.1.vsix
+  ```
 
-```bash
-cursor --install-extension deltadsl-0.1.0.vsix
-# or for VSCode:
-code --install-extension deltadsl-0.1.0.vsix
-```
+Reload the window when prompted.
 
----
+## Getting started
 
-## Quick test
-
-Create a file named `test.dsl` and paste:
+Create a new file with the `.dsl` extension and paste the following:
 
 ```
-@indicator "RSI Overbought Alert"
-@input length = 14
-@input threshold = 70
-@version 1
+@indicator "RSI Threshold"
+@version  1
+@pane     "below"
 
-rsi_value = rsi(close, length)
-plotLine("RSI", rsi_value)
-plotHline(threshold, color="#F0B90B", style="dashed")
-alertcondition(rsi_value > threshold, "RSI overbought on {{symbol}}")
+@input length    = input.int(14,  "RSI period", minval=2, maxval=200)
+@input upper     = input.float(70, "Overbought threshold")
+@input lower     = input.float(30, "Oversold threshold")
+@input bullColor = input.color("#0ECB81", "Bull color")
+@input bearColor = input.color("#F6465D", "Bear color")
+
+value     = rsi(close, length)
+bandColor = iff(value >= 50, bullColor, bearColor)
+
+plotLine(value, color=bandColor, width=1.5)
+plotHline(upper, color=bearColor, style="dashed")
+plotHline(lower, color=bullColor, style="dashed")
+
+alertcondition(crossover(value,  upper), "RSI overbought on {{symbol}}")
+alertcondition(crossunder(value, lower), "RSI oversold on {{symbol}}")
 ```
 
-Every keyword, builtin, and directive should be coloured according
-to your theme.
-
----
+Every keyword, function, and literal will be coloured according to
+your editor theme.
 
 ## Supported file extensions
 
-| Extension | Description |
+| Extension | Notes |
 |---|---|
-| `.dsl` | Primary extension for DeltaDSL scripts |
-| `.mrd` | Alias — equivalent to `.dsl` |
+| `.dsl` | Primary file extension |
+| `.mrd` | Alias for `.dsl` |
 
----
+## Requirements
+
+- VSCode 1.70.0 or newer, **or** any compatible editor (Cursor,
+  VSCodium, code-server).
+- No language server, runtime, or toolchain required — syntax
+  highlighting and snippets work out of the box.
+
+## Roadmap
+
+Planned for upcoming releases:
+
+- Hover documentation for built-in functions
+- Signature help while typing arguments
+- Inline diagnostics for unknown identifiers
+- Auto-completion driven by the runtime catalog
 
 ## Building from source
-
-Clone this repo, install `vsce`, then package:
 
 ```bash
 git clone https://github.com/PhamNhinh/vscode-deltadsl.git
 cd vscode-deltadsl
 npm install -g @vscode/vsce
-vsce package --no-yarn --allow-missing-repository \
-  --baseContentUrl https://github.com/PhamNhinh/vscode-deltadsl/raw/main \
-  --baseImagesUrl https://github.com/PhamNhinh/vscode-deltadsl/raw/main
+vsce package
 ```
 
-Output: `deltadsl-X.Y.Z.vsix`
-
-### Dev mode (live reload)
-
-Open this folder in VSCode/Cursor → press `F5` → an "Extension
-Development Host" window launches with the extension auto-loaded.
-Open `samples/example.dsl` to see highlighting live.
-
----
+The resulting `.vsix` file can be installed locally as described
+above.
 
 ## License
 
-See [LICENSE.txt](./LICENSE.txt). Proprietary — free to install and
-use for authoring DeltaDSL scripts inside any VSCode-compatible
-editor. Redistribution to other marketplaces requires written
-consent from MRD Indicators.
+See [LICENSE.txt](./LICENSE.txt). Free to install and use for
+authoring DeltaDSL scripts. Redistribution requires written consent
+from MRD Indicators.
 
----
+## Feedback and support
 
-## Issues & feedback
-
-Open an issue on the [GitHub issue
-tracker](https://github.com/PhamNhinh/vscode-deltadsl/issues).
+- **Issues:** https://github.com/PhamNhinh/vscode-deltadsl/issues
+- **Product:** https://app.mrd-indicators.com

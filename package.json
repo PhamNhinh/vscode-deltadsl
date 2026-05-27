@@ -1,7 +1,7 @@
 {
   "name": "deltadsl",
   "displayName": "DeltaDSL — MRD Indicator Script",
-  "description": "Syntax highlighting + snippets for DeltaDSL (.dsl) — the indicator scripting language of MRD Indicators.",
+  "description": "Official language support for DeltaDSL — syntax highlighting, snippets, and smart editing for MRD Indicators script files (.dsl, .mrd).",
   "version": "0.1.1",
   "publisher": "mrd",
   "license": "SEE LICENSE IN LICENSE.txt",
@@ -14,7 +14,7 @@
     "vscode": "^1.70.0"
   },
   "categories": ["Programming Languages", "Snippets"],
-  "keywords": ["deltadsl", "dsl", "mrd", "trading", "indicator", "pinescript-alternative"],
+  "keywords": ["deltadsl", "dsl", "mrd", "trading", "indicator", "syntax-highlighting", "snippets"],
   "repository": {
     "type": "git",
     "url": "https://github.com/PhamNhinh/vscode-deltadsl.git"
