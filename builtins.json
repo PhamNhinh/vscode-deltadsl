@@ -1,0 +1,1544 @@
+[
+  {
+    "label": "abs",
+    "kind": "fn",
+    "signature": "abs(x)",
+    "doc": "Absolute value (element-wise on series)"
+  },
+  {
+    "label": "floor",
+    "kind": "fn",
+    "signature": "floor(x)",
+    "doc": "Largest integer ≤ x"
+  },
+  {
+    "label": "ceil",
+    "kind": "fn",
+    "signature": "ceil(x)",
+    "doc": "Smallest integer ≥ x"
+  },
+  {
+    "label": "round",
+    "kind": "fn",
+    "signature": "round(x)",
+    "doc": "Round to nearest integer (half away from zero)"
+  },
+  {
+    "label": "sign",
+    "kind": "fn",
+    "signature": "sign(x)",
+    "doc": "+1 / 0 / -1 by sign of x"
+  },
+  {
+    "label": "sqrt",
+    "kind": "fn",
+    "signature": "sqrt(x)",
+    "doc": "Square root"
+  },
+  {
+    "label": "pow",
+    "kind": "fn",
+    "signature": "pow(base, exponent)",
+    "doc": "base ^ exponent"
+  },
+  {
+    "label": "exp",
+    "kind": "fn",
+    "signature": "exp(x)",
+    "doc": "e^x"
+  },
+  {
+    "label": "log",
+    "kind": "fn",
+    "signature": "log(x)",
+    "doc": "Natural log (ln)"
+  },
+  {
+    "label": "log10",
+    "kind": "fn",
+    "signature": "log10(x)",
+    "doc": "Base-10 log"
+  },
+  {
+    "label": "sin",
+    "kind": "fn",
+    "signature": "sin(x)",
+    "doc": "Sine of x (radians)"
+  },
+  {
+    "label": "cos",
+    "kind": "fn",
+    "signature": "cos(x)",
+    "doc": "Cosine of x (radians)"
+  },
+  {
+    "label": "tan",
+    "kind": "fn",
+    "signature": "tan(x)",
+    "doc": "Tangent of x (radians)"
+  },
+  {
+    "label": "asin",
+    "kind": "fn",
+    "signature": "asin(x)",
+    "doc": "Arc-sine, returns radians"
+  },
+  {
+    "label": "acos",
+    "kind": "fn",
+    "signature": "acos(x)",
+    "doc": "Arc-cosine, returns radians"
+  },
+  {
+    "label": "atan",
+    "kind": "fn",
+    "signature": "atan(x)",
+    "doc": "Arc-tangent, returns radians"
+  },
+  {
+    "label": "atan2",
+    "kind": "fn",
+    "signature": "atan2(y, x)",
+    "doc": "Two-argument arc-tangent (handles quadrant)"
+  },
+  {
+    "label": "max",
+    "kind": "fn",
+    "signature": "max(a, b, …)",
+    "doc": "Larger of N values (broadcast over series)"
+  },
+  {
+    "label": "min",
+    "kind": "fn",
+    "signature": "min(a, b, …)",
+    "doc": "Smaller of N values (broadcast over series)"
+  },
+  {
+    "label": "iff",
+    "kind": "fn",
+    "signature": "iff(cond, a, b)",
+    "doc": "Vectorised if-then-else. Returns a where cond is truthy, b otherwise. Any arg may be a series."
+  },
+  {
+    "label": "mask",
+    "kind": "fn",
+    "signature": "mask(series, cond)",
+    "doc": "Return series[i] where cond[i] is truthy, NaN otherwise. NaN draws as a gap — use to paint per-bar trend bands in different colours."
+  },
+  {
+    "label": "holdSign",
+    "kind": "fn",
+    "signature": "holdSign(up, down, init=0)",
+    "doc": "Sticky +1 / -1 trend tracker. Flips to +1 on up[i], -1 on down[i], carries forward. Pass init=1 to start in bull state, -1 for bear."
+  },
+  {
+    "label": "nz",
+    "kind": "fn",
+    "signature": "nz(value, fallback=0)",
+    "doc": "Replace NaN entries with fallback (null-safety helper)."
+  },
+  {
+    "label": "fixnan",
+    "kind": "fn",
+    "signature": "fixnan(value)",
+    "doc": "Carry the last finite value forward over NaN gaps. Useful for sparse pivot lines."
+  },
+  {
+    "label": "isna",
+    "kind": "fn",
+    "signature": "isna(value)",
+    "doc": "NaN predicate. Scalar → boolean (true if NaN); series → boolean series (true on each NaN bar). Pair with `at(series, last_bar_index)` for an empty-data guard on optional feeds (CVD / OI / funding). Same semantics as Pine `na(x)` — `na(x)` is also accepted for Pine-script muscle memory."
+  },
+  {
+    "label": "na",
+    "kind": "fn",
+    "signature": "na(value)",
+    "doc": "Pine-compat NaN predicate (alias of `isna`). The bare identifier `na` is also the NaN constant for `iff(cond, x, na)` masks — value position resolves to NaN, call position resolves to the predicate."
+  },
+  {
+    "label": "clamp",
+    "kind": "fn",
+    "signature": "clamp(src, lo, hi)",
+    "doc": "Element-wise clamp into [lo, hi]. Any of the three args may be a series."
+  },
+  {
+    "label": "lerp",
+    "kind": "fn",
+    "signature": "lerp(a, b, t)",
+    "doc": "Element-wise linear interpolate `a + (b - a) * t`. Values of `t` outside [0,1] extrapolate (no implicit clamp)."
+  },
+  {
+    "label": "shift",
+    "kind": "fn",
+    "signature": "shift(src, n)",
+    "doc": "Shift series right by n bars (NaN-padded)"
+  },
+  {
+    "label": "prev",
+    "kind": "fn",
+    "signature": "prev(src, n=1)",
+    "doc": "Alias for shift(src, n)"
+  },
+  {
+    "label": "at",
+    "kind": "fn",
+    "signature": "at(series, i)",
+    "doc": "Scalar value of `series` at absolute bar index `i`. Distinct from series[k] (history shift). Use inside for-loops to extract scalar coords for lineNew / boxNew / labelNew per-event drawing."
+  },
+  {
+    "label": "change",
+    "kind": "fn",
+    "signature": "change(src)",
+    "doc": "src[i] - src[i-1]"
+  },
+  {
+    "label": "crossover",
+    "kind": "fn",
+    "signature": "crossover(a, b)",
+    "doc": "true on the bar a crosses ABOVE b"
+  },
+  {
+    "label": "crossunder",
+    "kind": "fn",
+    "signature": "crossunder(a, b)",
+    "doc": "true on the bar a crosses BELOW b"
+  },
+  {
+    "label": "cross",
+    "kind": "fn",
+    "signature": "cross(a, b)",
+    "doc": "true on either crossover OR crossunder"
+  },
+  {
+    "label": "highest",
+    "kind": "fn",
+    "signature": "highest(src, period)",
+    "doc": "Rolling max over `period` bars"
+  },
+  {
+    "label": "lowest",
+    "kind": "fn",
+    "signature": "lowest(src, period)",
+    "doc": "Rolling min over `period` bars"
+  },
+  {
+    "label": "highestbars",
+    "kind": "fn",
+    "signature": "highestbars(src, period)",
+    "doc": "Bars back to the rolling-max value (0 = current bar)"
+  },
+  {
+    "label": "lowestbars",
+    "kind": "fn",
+    "signature": "lowestbars(src, period)",
+    "doc": "Bars back to the rolling-min value"
+  },
+  {
+    "label": "sum",
+    "kind": "fn",
+    "signature": "sum(src, period)",
+    "doc": "Rolling sum over `period` bars"
+  },
+  {
+    "label": "cum",
+    "kind": "fn",
+    "signature": "cum(src)",
+    "doc": "Cumulative sum from the first finite bar"
+  },
+  {
+    "label": "cumMax",
+    "kind": "fn",
+    "signature": "cumMax(src)",
+    "doc": "Running maximum from chart start (all-time high). NaN-tolerant. Equivalent to `scan(src, \"max\")`."
+  },
+  {
+    "label": "cumMin",
+    "kind": "fn",
+    "signature": "cumMin(src)",
+    "doc": "Running minimum from chart start. Equivalent to `scan(src, \"min\")`."
+  },
+  {
+    "label": "cumProd",
+    "kind": "fn",
+    "signature": "cumProd(src)",
+    "doc": "Running product from chart start (init=1). Useful for compounded-return curves: `cumProd(1 + change(close)/close[1])`."
+  },
+  {
+    "label": "scan",
+    "kind": "fn",
+    "signature": "scan(src, op, initial=identity)",
+    "doc": "Generic forward fold. `op` ∈ \"sum\" | \"product\" | \"max\" | \"min\" | \"last\" | \"and\" | \"or\" | \"xor\". Pine `var x` recurrence in one call. Default `initial` is the identity for the op (0/1/-Inf/+Inf/NaN/true/false)."
+  },
+  {
+    "label": "accumReset",
+    "kind": "fn",
+    "signature": "accumReset(value, resetEvent, op, initial=identity)",
+    "doc": "Generic anchored fold — restarts to identity on each resetEvent. Same `op` set as scan. Generalises cumReset/maxSinceReset/minSinceReset and adds bool variants like \"sticky-bull session\" via op=\"and\"."
+  },
+  {
+    "label": "runStreak",
+    "kind": "fn",
+    "signature": "runStreak(boolSeries)",
+    "doc": "Consecutive-true counter — number of bars boolSeries has been continuously true ending at the current bar. Resets to 0 the moment it goes false. Always finite output."
+  },
+  {
+    "label": "stateMachine",
+    "kind": "fn",
+    "signature": "stateMachine(cond, value, initial=NaN)",
+    "doc": "Sticky value with EXPLICIT initial. On bars where cond is truthy, snap state to value[i]; otherwise carry forward. Differs from `valuewhen(cond, value, 0)` by exposing the seed value (no NaN warmup)."
+  },
+  {
+    "label": "cumReset",
+    "kind": "fn",
+    "signature": "cumReset(value, resetEvent, initial=0)",
+    "doc": "Cumulative sum that RESETS on each bar where resetEvent is truthy. Anchored-VWAP boilerplate collapses to `flow = cumReset(hlc3*volume, anchor)` / `vol = cumReset(volume, anchor)` / `vwap = flow / vol`. NaN values are treated as 0 (don't break the accumulator)."
+  },
+  {
+    "label": "maxSinceReset",
+    "kind": "fn",
+    "signature": "maxSinceReset(value, resetEvent, initial=-Infinity)",
+    "doc": "Running max since the latest reset event (inclusive). Use for \"highest high since session open\" / \"session ATH\" patterns. NaN inputs are ignored."
+  },
+  {
+    "label": "minSinceReset",
+    "kind": "fn",
+    "signature": "minSinceReset(value, resetEvent, initial=+Infinity)",
+    "doc": "Running min since the latest reset event. Symmetric to maxSinceReset — \"session low\" / \"drawdown floor since anchor\"."
+  },
+  {
+    "label": "barssinceReset",
+    "kind": "fn",
+    "signature": "barssinceReset(resetEvent)",
+    "doc": "Bars since the latest reset event (0 on the reset bar, 1 the next bar, …). Equivalent to `barssince(resetEvent)` — alias kept next to the other anchored helpers for discoverability."
+  },
+  {
+    "label": "valuewhen",
+    "kind": "fn",
+    "signature": "valuewhen(cond, src, occurrence=0)",
+    "doc": "Value of src on the bar cond was true `occurrence` events ago. Carries forward."
+  },
+  {
+    "label": "barssince",
+    "kind": "fn",
+    "signature": "barssince(cond)",
+    "doc": "Bars since cond was last true (NaN until first true)"
+  },
+  {
+    "label": "rising",
+    "kind": "fn",
+    "signature": "rising(src, length)",
+    "doc": "true if src[i] > src[i-length]"
+  },
+  {
+    "label": "falling",
+    "kind": "fn",
+    "signature": "falling(src, length)",
+    "doc": "true if src[i] < src[i-length]"
+  },
+  {
+    "label": "sma",
+    "kind": "fn",
+    "signature": "sma(src, period)",
+    "doc": "Simple moving average"
+  },
+  {
+    "label": "ema",
+    "kind": "fn",
+    "signature": "ema(src, period)",
+    "doc": "Exponential moving average (k = 2/(p+1))"
+  },
+  {
+    "label": "wma",
+    "kind": "fn",
+    "signature": "wma(src, period)",
+    "doc": "Weighted moving average (linear weights)"
+  },
+  {
+    "label": "rma",
+    "kind": "fn",
+    "signature": "rma(src, period)",
+    "doc": "Wilder running MA (k = 1/p) — used by RSI / ADX / ATR"
+  },
+  {
+    "label": "hma",
+    "kind": "fn",
+    "signature": "hma(src, period)",
+    "doc": "Hull MA — fast smoother with reduced lag"
+  },
+  {
+    "label": "dema",
+    "kind": "fn",
+    "signature": "dema(src, period)",
+    "doc": "Double EMA — `2*ema - ema(ema)`"
+  },
+  {
+    "label": "tema",
+    "kind": "fn",
+    "signature": "tema(src, period)",
+    "doc": "Triple EMA — less lag than dema, more smoothing than ema"
+  },
+  {
+    "label": "vwma",
+    "kind": "fn",
+    "signature": "vwma(src, volume, period)",
+    "doc": "Volume-weighted MA — sum(src*vol)/sum(vol) over `period`"
+  },
+  {
+    "label": "stdev",
+    "kind": "fn",
+    "signature": "stdev(src, period)",
+    "doc": "Rolling standard deviation (population, divisor = p)"
+  },
+  {
+    "label": "variance",
+    "kind": "fn",
+    "signature": "variance(src, period)",
+    "doc": "Rolling variance (square of stdev)"
+  },
+  {
+    "label": "dev",
+    "kind": "fn",
+    "signature": "dev(src, period)",
+    "doc": "Mean absolute deviation around the rolling SMA — used by CCI"
+  },
+  {
+    "label": "normalize",
+    "kind": "fn",
+    "signature": "normalize(src, fromMin, fromMax, toMin=0, toMax=1)",
+    "doc": "Map src from [fromMin,fromMax] into [toMin,toMax]. toMin/toMax can be series — pass `lowest(low, N)` and `highest(high, N)` to overlay an oscillator inside the live price range."
+  },
+  {
+    "label": "percentrank",
+    "kind": "fn",
+    "signature": "percentrank(src, period)",
+    "doc": "Rank of src[i] in its rolling window as 0-100"
+  },
+  {
+    "label": "percentile",
+    "kind": "fn",
+    "signature": "percentile(src, period, percent)",
+    "doc": "Linearly-interpolated percentile of the rolling window"
+  },
+  {
+    "label": "median",
+    "kind": "fn",
+    "signature": "median(src, period)",
+    "doc": "50th percentile shortcut"
+  },
+  {
+    "label": "correlation",
+    "kind": "fn",
+    "signature": "correlation(a, b, period)",
+    "doc": "Pearson correlation over a rolling window"
+  },
+  {
+    "label": "linreg",
+    "kind": "fn",
+    "signature": "linreg(src, period, offset=0)",
+    "doc": "Linear-regression value at the END of the window. offset=0 → newest bar; positive → older."
+  },
+  {
+    "label": "polyreg2",
+    "kind": "fn",
+    "signature": "polyreg2(src, period, offset=0)",
+    "doc": "Quadratic (degree-2) polynomial regression — fits y ≈ c0 + c1*x + c2*x² to the last `period` bars by closed-form Cramer's-rule solve. offset=0 → newest bar in lookback (x=period-1); offset=period-1 → oldest (x=0); negative → forward extrapolation."
+  },
+  {
+    "label": "polyreg2_stderr",
+    "kind": "fn",
+    "signature": "polyreg2_stderr(src, period)",
+    "doc": "Standard error of the quadratic regression — sqrt(Σ(y - fit)² / period). Used to draw regression channel offsets (mid ± stderr × widthMul)."
+  },
+  {
+    "label": "zscore",
+    "kind": "fn",
+    "signature": "zscore(src, period)",
+    "doc": "Rolling z-score: `(src - sma(src, p)) / stdev(src, p)`. NaN where the local stdev is zero (perfectly flat segment)."
+  },
+  {
+    "label": "rsi",
+    "kind": "fn",
+    "signature": "rsi(src, period)",
+    "doc": "Wilder RSI"
+  },
+  {
+    "label": "stoch_k",
+    "kind": "fn",
+    "signature": "stoch_k(close, high, low, period)",
+    "doc": "Stochastic %K — 100 * (close - lowest) / (highest - lowest)"
+  },
+  {
+    "label": "stoch_d",
+    "kind": "fn",
+    "signature": "stoch_d(close, high, low, kPeriod, dPeriod=3)",
+    "doc": "Stochastic %D — sma of %K"
+  },
+  {
+    "label": "cci",
+    "kind": "fn",
+    "signature": "cci(high, low, close, period)",
+    "doc": "Commodity Channel Index — (typical - sma) / (0.015 * mean_abs_dev)"
+  },
+  {
+    "label": "mfi",
+    "kind": "fn",
+    "signature": "mfi(high, low, close, volume, period)",
+    "doc": "Money Flow Index — volume-weighted RSI on typical price"
+  },
+  {
+    "label": "willr",
+    "kind": "fn",
+    "signature": "willr(high, low, close, period)",
+    "doc": "Williams %R, range -100..0"
+  },
+  {
+    "label": "mom",
+    "kind": "fn",
+    "signature": "mom(src, period)",
+    "doc": "Momentum — src[i] - src[i-period]"
+  },
+  {
+    "label": "roc",
+    "kind": "fn",
+    "signature": "roc(src, period)",
+    "doc": "Rate of Change — 100 * (src - prev) / prev"
+  },
+  {
+    "label": "macd_line",
+    "kind": "fn",
+    "signature": "macd_line(src, fast, slow)",
+    "doc": "MACD line — ema(src, fast) - ema(src, slow)"
+  },
+  {
+    "label": "macd_signal",
+    "kind": "fn",
+    "signature": "macd_signal(src, fast, slow, signal)",
+    "doc": "MACD signal — ema(macd_line, signal)"
+  },
+  {
+    "label": "macd_hist",
+    "kind": "fn",
+    "signature": "macd_hist(src, fast, slow, signal)",
+    "doc": "MACD histogram — macd_line - macd_signal"
+  },
+  {
+    "label": "tr",
+    "kind": "fn",
+    "signature": "tr(high, low, close)",
+    "doc": "True Range — max(h-l, |h-prev_close|, |l-prev_close|)"
+  },
+  {
+    "label": "atr",
+    "kind": "fn",
+    "signature": "atr(high, low, close, period)",
+    "doc": "Average True Range (Wilder smoothing of TR)"
+  },
+  {
+    "label": "bb_basis",
+    "kind": "fn",
+    "signature": "bb_basis(src, period)",
+    "doc": "Bollinger Bands basis — sma(src, period)"
+  },
+  {
+    "label": "bb_upper",
+    "kind": "fn",
+    "signature": "bb_upper(src, period, mult)",
+    "doc": "Bollinger upper — sma + mult * stdev"
+  },
+  {
+    "label": "bb_lower",
+    "kind": "fn",
+    "signature": "bb_lower(src, period, mult)",
+    "doc": "Bollinger lower — sma - mult * stdev"
+  },
+  {
+    "label": "kc_basis",
+    "kind": "fn",
+    "signature": "kc_basis(src, period)",
+    "doc": "Keltner basis — ema(src, period)"
+  },
+  {
+    "label": "kc_upper",
+    "kind": "fn",
+    "signature": "kc_upper(src, high, low, close, period, mult)",
+    "doc": "Keltner upper — ema + mult * atr"
+  },
+  {
+    "label": "kc_lower",
+    "kind": "fn",
+    "signature": "kc_lower(src, high, low, close, period, mult)",
+    "doc": "Keltner lower — ema - mult * atr"
+  },
+  {
+    "label": "dc_upper",
+    "kind": "fn",
+    "signature": "dc_upper(high, period)",
+    "doc": "Donchian upper — highest(high, period)"
+  },
+  {
+    "label": "dc_lower",
+    "kind": "fn",
+    "signature": "dc_lower(low, period)",
+    "doc": "Donchian lower — lowest(low, period)"
+  },
+  {
+    "label": "dc_basis",
+    "kind": "fn",
+    "signature": "dc_basis(high, low, period)",
+    "doc": "Donchian basis — (dc_upper + dc_lower) / 2"
+  },
+  {
+    "label": "obv",
+    "kind": "fn",
+    "signature": "obv(close, volume)",
+    "doc": "On-Balance Volume — cumulative volume signed by close direction"
+  },
+  {
+    "label": "ad",
+    "kind": "fn",
+    "signature": "ad(high, low, close, volume)",
+    "doc": "Accumulation/Distribution Line — cumulative MFM*volume"
+  },
+  {
+    "label": "cmf",
+    "kind": "fn",
+    "signature": "cmf(high, low, close, volume, period)",
+    "doc": "Chaikin Money Flow — sum(MFM*vol) / sum(vol) over `period`"
+  },
+  {
+    "label": "pvt",
+    "kind": "fn",
+    "signature": "pvt(close, volume)",
+    "doc": "Price-Volume Trend — cumulative (change(close)/prev_close) * volume"
+  },
+  {
+    "label": "pivothigh",
+    "kind": "fn",
+    "signature": "pivothigh(src, left, right)",
+    "doc": "Pivot HIGH — `src[i-right]` if it is the strict max of the window. NaN on non-pivot bars; pair with valuewhen() or fixnan() for a continuous line."
+  },
+  {
+    "label": "pivotlow",
+    "kind": "fn",
+    "signature": "pivotlow(src, left, right)",
+    "doc": "Pivot LOW — symmetric to pivothigh"
+  },
+  {
+    "label": "pivotAvg",
+    "kind": "fn",
+    "signature": "pivotAvg(pivotSeries, count)",
+    "doc": "Stair-step rolling average of the last `count` non-NaN pivots. Updates on every new pivot, carries forward between events. Pair with pivothigh / pivotlow to build pivot-based \"drift\" lines (the rolling-pivot average pattern)."
+  },
+  {
+    "label": "supertrend",
+    "kind": "fn",
+    "signature": "supertrend(high, low, close, atrPeriod, mult)",
+    "doc": "Supertrend BAND value (the visible trail line). Pair with supertrend_dir for the trend signal."
+  },
+  {
+    "label": "supertrend_dir",
+    "kind": "fn",
+    "signature": "supertrend_dir(high, low, close, atrPeriod, mult)",
+    "doc": "Supertrend direction series — +1 bull, -1 bear"
+  },
+  {
+    "label": "trail",
+    "kind": "fn",
+    "signature": "trail(close, upBand, dnBand, initDir=1)",
+    "doc": "Generic ratcheting trail with caller-supplied bull / bear bands. In bull regime the trail ratchets UP only (max of upBand and previous trail); when close < trail it flips to bear and jumps to dnBand. Mirror in reverse. Use this to express any \"Supertrend on X\" reskin without hand-rolling the recurrence — see lib/structure.js for the full recurrence body."
+  },
+  {
+    "label": "trail_dir",
+    "kind": "fn",
+    "signature": "trail_dir(close, upBand, dnBand, initDir=1)",
+    "doc": "+1 / -1 direction series for the same trail. Cheap to call alongside `trail()`. Use the dir series to drive mask() / colour selection per bar."
+  },
+  {
+    "label": "plus_di",
+    "kind": "fn",
+    "signature": "plus_di(high, low, close, period)",
+    "doc": "+DI line of the Wilder DMI"
+  },
+  {
+    "label": "minus_di",
+    "kind": "fn",
+    "signature": "minus_di(high, low, close, period)",
+    "doc": "-DI line of the Wilder DMI"
+  },
+  {
+    "label": "adx",
+    "kind": "fn",
+    "signature": "adx(high, low, close, period)",
+    "doc": "Average Directional Index — Wilder smoothing of |+DI -DI| / (+DI + -DI)"
+  },
+  {
+    "label": "arrNew",
+    "kind": "fn",
+    "signature": "arrNew(size=0, fill=NaN)",
+    "doc": "Create a new array pre-sized to `size` and filled with `fill` (default NaN). Counts against the per-script array cap (256 arrays per eval)."
+  },
+  {
+    "label": "arrFrom",
+    "kind": "fn",
+    "signature": "arrFrom(v1, v2, …)",
+    "doc": "Create an array from variadic positional args: `arrFrom(1, 2, 3)` → 3-element array."
+  },
+  {
+    "label": "arrCopy",
+    "kind": "fn",
+    "signature": "arrCopy(arr)",
+    "doc": "Shallow clone — same elements, new MrdArray. Counts as a new allocation against the arena."
+  },
+  {
+    "label": "arrSize",
+    "kind": "fn",
+    "signature": "arrSize(arr)",
+    "doc": "Element count."
+  },
+  {
+    "label": "arrGet",
+    "kind": "fn",
+    "signature": "arrGet(arr, i)",
+    "doc": "Element at index i. Negative i wraps from end (-1 = last). Throws on out-of-bounds. Equivalent to `arr[i]` subscript syntax."
+  },
+  {
+    "label": "arrFirst",
+    "kind": "fn",
+    "signature": "arrFirst(arr)",
+    "doc": "Convenience for `arrGet(arr, 0)`. NaN if empty."
+  },
+  {
+    "label": "arrLast",
+    "kind": "fn",
+    "signature": "arrLast(arr)",
+    "doc": "Convenience for `arrGet(arr, -1)`. NaN if empty."
+  },
+  {
+    "label": "arrIndexOf",
+    "kind": "fn",
+    "signature": "arrIndexOf(arr, value)",
+    "doc": "First index where element === value, or -1."
+  },
+  {
+    "label": "arrLastIndexOf",
+    "kind": "fn",
+    "signature": "arrLastIndexOf(arr, value)",
+    "doc": "Last index where element === value, or -1."
+  },
+  {
+    "label": "arrIncludes",
+    "kind": "fn",
+    "signature": "arrIncludes(arr, value)",
+    "doc": "Boolean — does the array contain `value`?"
+  },
+  {
+    "label": "arrPush",
+    "kind": "fn",
+    "signature": "arrPush(arr, value)",
+    "doc": "Append to end. Throws if array is at per-array cap (10k). Returns the array."
+  },
+  {
+    "label": "arrPop",
+    "kind": "fn",
+    "signature": "arrPop(arr)",
+    "doc": "Remove + return the last element. NaN if empty."
+  },
+  {
+    "label": "arrShift",
+    "kind": "fn",
+    "signature": "arrShift(arr)",
+    "doc": "Remove + return the FIRST element. NaN if empty."
+  },
+  {
+    "label": "arrUnshift",
+    "kind": "fn",
+    "signature": "arrUnshift(arr, value)",
+    "doc": "Prepend to front. Returns the array."
+  },
+  {
+    "label": "arrSet",
+    "kind": "fn",
+    "signature": "arrSet(arr, i, value)",
+    "doc": "Set element at index i. Negative i wraps. Returns the array."
+  },
+  {
+    "label": "arrInsert",
+    "kind": "fn",
+    "signature": "arrInsert(arr, i, value)",
+    "doc": "Insert `value` before index i (i === size is allowed, appends)."
+  },
+  {
+    "label": "arrRemove",
+    "kind": "fn",
+    "signature": "arrRemove(arr, i)",
+    "doc": "Remove + return element at index i."
+  },
+  {
+    "label": "arrClear",
+    "kind": "fn",
+    "signature": "arrClear(arr)",
+    "doc": "Empty the array (size → 0). Returns the array."
+  },
+  {
+    "label": "arrReverse",
+    "kind": "fn",
+    "signature": "arrReverse(arr)",
+    "doc": "Reverse in place. Returns the array."
+  },
+  {
+    "label": "arrSort",
+    "kind": "fn",
+    "signature": "arrSort(arr, dir=\"asc\")",
+    "doc": "Sort in place. `dir` ∈ \"asc\" / \"desc\" (case-insensitive). Numbers sort numerically, strings lexically, booleans false < true. Mixed-type arrays throw. NaN floats to the end."
+  },
+  {
+    "label": "arrSlice",
+    "kind": "fn",
+    "signature": "arrSlice(arr, from=0, to=size)",
+    "doc": "NEW array with elements in `[from, to)`. Negative indices wrap from end. Allocates against arena caps."
+  },
+  {
+    "label": "arrConcat",
+    "kind": "fn",
+    "signature": "arrConcat(a, b)",
+    "doc": "NEW array with `a` followed by `b`. Throws if result exceeds per-array cap."
+  },
+  {
+    "label": "arrFill",
+    "kind": "fn",
+    "signature": "arrFill(arr, value, from=0, to=size)",
+    "doc": "Fill range with `value` (in place). Returns the array."
+  },
+  {
+    "label": "arrSum",
+    "kind": "fn",
+    "signature": "arrSum(arr)",
+    "doc": "Sum of finite numeric elements (booleans / strings / NaN skipped). NaN if no finite elements."
+  },
+  {
+    "label": "arrAvg",
+    "kind": "fn",
+    "signature": "arrAvg(arr)",
+    "doc": "Arithmetic mean of finite numeric elements."
+  },
+  {
+    "label": "arrMin",
+    "kind": "fn",
+    "signature": "arrMin(arr)",
+    "doc": "Minimum of finite numeric elements."
+  },
+  {
+    "label": "arrMax",
+    "kind": "fn",
+    "signature": "arrMax(arr)",
+    "doc": "Maximum of finite numeric elements."
+  },
+  {
+    "label": "arrMedian",
+    "kind": "fn",
+    "signature": "arrMedian(arr)",
+    "doc": "Median (50th percentile) of finite numeric elements. Even-count arrays interpolate the two middle values."
+  },
+  {
+    "label": "arrStdev",
+    "kind": "fn",
+    "signature": "arrStdev(arr)",
+    "doc": "Population standard deviation of finite numeric elements (divisor n, not n-1)."
+  },
+  {
+    "label": "arrVariance",
+    "kind": "fn",
+    "signature": "arrVariance(arr)",
+    "doc": "Population variance of finite numeric elements."
+  },
+  {
+    "label": "arrToSeries",
+    "kind": "fn",
+    "signature": "arrToSeries(arr, length)",
+    "doc": "Broadcast the array as a series of `length` bars. Elements past array end become NaN; elements past length are truncated. Useful for piping per-pivot data into bar-aware drawing primitives."
+  },
+  {
+    "label": "htf_resample",
+    "kind": "fn",
+    "signature": "htf_resample(series, tf, timestamps, op=\"last\", lookahead=false)",
+    "doc": "Aggregate `series` into HTF buckets and broadcast back to chart bars.\n• tf: \"5m\" / \"1h\" / \"1D\" / \"3D\" / \"1W\" / \"1M\" / \"1Y\" (uppercase letter for calendar units).\n• timestamps: pass the built-in `time` series.\n• op: \"first\" / \"last\" / \"min\" / \"max\" / \"sum\" / \"avg\" — pick the right one for each OHLCV channel.\n• lookahead (default false, repaint-free): chart bar i shows the LAST COMPLETED bucket's value. Set true to show the running CURRENT bucket value (intra-bar updates).\nCommon patterns:\n  close_d1 = htf_resample(close, \"1D\", time, \"last\")\n  high_d1  = htf_resample(high,  \"1D\", time, \"max\")\n  low_d1   = htf_resample(low,   \"1D\", time, \"min\")\n  open_d1  = htf_resample(open,  \"1D\", time, \"first\")\n  vol_d1   = htf_resample(volume,\"1D\", time, \"sum\")\n  daily_rsi = rsi(close_d1, 14)"
+  },
+  {
+    "label": "htf_new_bar",
+    "kind": "fn",
+    "signature": "htf_new_bar(timestamps, tf)",
+    "doc": "Boolean series — true at every chart bar that is the FIRST bar of a new HTF bucket. Pine's `ta.change(time(tf)) != 0` idiom. Bar 0 is always false (no pre-history baseline). Use to gate per-HTF-bar drawings (one label per day, etc.)."
+  },
+  {
+    "label": "htf_bucket_start",
+    "kind": "fn",
+    "signature": "htf_bucket_start(timestamps, tf)",
+    "doc": "Series of UTC ms timestamps marking the START of each chart bar's HTF bucket. Useful as x-coord for `lineNew(slot, htf_bucket_start, …)` to anchor a level to the bucket boundary rather than to a chart bar."
+  },
+  {
+    "label": "htf_bars_in_bucket",
+    "kind": "fn",
+    "signature": "htf_bars_in_bucket(timestamps, tf)",
+    "doc": "Series of bar counts within the current HTF bucket (0 at first chart bar of bucket, 1 at second, …). Equivalent to `barssince(htf_new_bar(...))` but single-pass. Use to fade a \"current bucket so far\" overlay or trigger \"wait N bars after new daily bar\" gates."
+  },
+  {
+    "label": "rgb",
+    "kind": "fn",
+    "signature": "rgb(r, g, b)",
+    "doc": "Compose a #rrggbb hex from 0-255 channels"
+  },
+  {
+    "label": "rgba",
+    "kind": "fn",
+    "signature": "rgba(r, g, b, a)",
+    "doc": "Compose an rgba(...) string. a ∈ [0, 1]"
+  },
+  {
+    "label": "withAlpha",
+    "kind": "fn",
+    "signature": "withAlpha(colorStr, alpha)",
+    "doc": "Apply an alpha override to any hex / rgb() / rgba() colour string"
+  },
+  {
+    "label": "gradient",
+    "kind": "fn",
+    "signature": "gradient(t, colorA, colorB)",
+    "doc": "Linear interpolate between two colours by t ∈ [0, 1]"
+  },
+  {
+    "label": "tostring",
+    "kind": "fn",
+    "signature": "tostring(value, fmt=\"0.00\")",
+    "doc": "Format a scalar OR a series as a string. fmt patterns: \"0\" int, \"0.00\" fixed-2, \"0.000000\" up to fixed-8, \"##.##\" trim trailing zeros, \"%\" percent (×100, append \"%\"). Combine with `+` for `\"RSI: \" + tostring(r, \"0.0\")`."
+  },
+  {
+    "label": "padLeft",
+    "kind": "fn",
+    "signature": "padLeft(s, width, fill=\" \")",
+    "doc": "Left-pad a string to `width`. Useful for table-style HUDs in labelNew chips."
+  },
+  {
+    "label": "padRight",
+    "kind": "fn",
+    "signature": "padRight(s, width, fill=\" \")",
+    "doc": "Right-pad a string to `width`."
+  },
+  {
+    "label": "year",
+    "kind": "fn",
+    "signature": "year(t)",
+    "doc": "UTC calendar year of timestamp `t` (epoch ms). Accepts the `time` series or a scalar."
+  },
+  {
+    "label": "month",
+    "kind": "fn",
+    "signature": "month(t)",
+    "doc": "UTC month 1..12. NOT 0-indexed (matches Pine)."
+  },
+  {
+    "label": "dayofmonth",
+    "kind": "fn",
+    "signature": "dayofmonth(t)",
+    "doc": "UTC day of month 1..31."
+  },
+  {
+    "label": "dayofweek",
+    "kind": "fn",
+    "signature": "dayofweek(t)",
+    "doc": "UTC day of week 0=Sun … 6=Sat. Weekday filter: `dayofweek(time) >= 1 and dayofweek(time) <= 5`."
+  },
+  {
+    "label": "hour",
+    "kind": "fn",
+    "signature": "hour(t)",
+    "doc": "UTC hour 0..23."
+  },
+  {
+    "label": "minute",
+    "kind": "fn",
+    "signature": "minute(t)",
+    "doc": "UTC minute 0..59."
+  },
+  {
+    "label": "second",
+    "kind": "fn",
+    "signature": "second(t)",
+    "doc": "UTC second 0..59."
+  },
+  {
+    "label": "weekofyear",
+    "kind": "fn",
+    "signature": "weekofyear(t)",
+    "doc": "ISO 8601 week number 1..53 (Monday-start, week containing Thursday is week 1)."
+  },
+  {
+    "label": "getUserDrawings",
+    "kind": "fn",
+    "signature": "getUserDrawings()",
+    "doc": "Snapshot of every user-drawn shape on the chart (trendline, hline, fib_ret, channel, …). Re-evaluated each compute. Use to react to manual annotations — e.g. `for d in getUserDrawings(): if d.kind == \"trendline\" …`. Frozen array; create/edit drawings via `drawingTrendline` / `drawingHline` / etc."
+  },
+  {
+    "label": "logInfo",
+    "kind": "fn",
+    "signature": "logInfo(message_or_condition, [fmt, ...args])",
+    "doc": "Emit an info-level log. Call shapes:\n• logInfo(\"text\") — log once.\n• logInfo(\"fmt {0}\", numeric_series) — log final value once at the last bar (snapshot).\n• logInfo(\"fmt {0}\", boolean_series) — IMPLICIT CONDITIONAL: emit one entry per TRUE bar (a boolean series is auto-detected as the gate; \"Trigger fired at bar {0}\" → trigger_bear).\n• logInfo(condition_series, \"fmt {0}\", series) — EXPLICIT CONDITIONAL: first arg is the gate.\nCapped at 500 emits per call / 2000 per evaluation pass / 10K total per script."
+  },
+  {
+    "label": "logWarning",
+    "kind": "fn",
+    "signature": "logWarning(message_or_condition, [fmt, ...args])",
+    "doc": "Emit a warning-level log. Same call shapes as logInfo (boolean-series auto-detect, explicit-conditional form, snapshot for numeric series). Renders with an amber left-border in the Logs pane."
+  },
+  {
+    "label": "logError",
+    "kind": "fn",
+    "signature": "logError(message_or_condition, [fmt, ...args])",
+    "doc": "Emit an error-level log. Same call shapes as logInfo (boolean-series auto-detect, explicit-conditional form, snapshot for numeric series). Renders with a red left-border + red text in the Logs pane — reserve for real script errors / unexpected conditions, not normal trace."
+  },
+  {
+    "label": "plotLine",
+    "kind": "draw",
+    "signature": "plotLine(series, color=\"#F0B90B\", width=1.5)",
+    "doc": "Smooth polyline through `series`"
+  },
+  {
+    "label": "plotDashedLine",
+    "kind": "draw",
+    "signature": "plotDashedLine(series, color, width=1, dash=4, gap=4)",
+    "doc": "Dashed polyline"
+  },
+  {
+    "label": "plotBand",
+    "kind": "draw",
+    "signature": "plotBand(upper, lower, color=\"rgba(...)\")",
+    "doc": "Filled band between two series"
+  },
+  {
+    "label": "plotCandle",
+    "kind": "draw",
+    "signature": "plotCandle(open, high, low, close, bullColor=\"#089981\", bearColor=\"#F23645\", wickColor=, width=)",
+    "doc": "Per-bar OHLC primitive. Each bar draws a wick (high→low) + body (open↔close) sized to the engine's adaptive candle width. Bull (close ≥ open) → bullColor, bear → bearColor. NaN at any of OHLC[i] → bar skipped, so combine with mask()/iff() to draw on a sparse subset (volume histograms, structure markers). Set `bullColor === bearColor` for single-tone bars. `wickColor` defaults to body colour."
+  },
+  {
+    "label": "plotHline",
+    "kind": "draw",
+    "signature": "plotHline(price, color, width=1)",
+    "doc": "Horizontal line at `price`"
+  },
+  {
+    "label": "plotDashedHline",
+    "kind": "draw",
+    "signature": "plotDashedHline(price, color, width=1, dash=6, gap=4)",
+    "doc": "Dashed horizontal line"
+  },
+  {
+    "label": "plotMarkerUp",
+    "kind": "draw",
+    "signature": "plotMarkerUp(boolSeries, priceSeries, color=\"#089981\", size=6)",
+    "doc": "Up triangle where `boolSeries[i]` is true"
+  },
+  {
+    "label": "plotMarkerDown",
+    "kind": "draw",
+    "signature": "plotMarkerDown(boolSeries, priceSeries, color=\"#F23645\", size=6)",
+    "doc": "Down triangle where `boolSeries[i]` is true"
+  },
+  {
+    "label": "plotText",
+    "kind": "draw",
+    "signature": "plotText(boolSeries, priceSeries, text, color, size=10)",
+    "doc": "Text label where `boolSeries[i]` is true"
+  },
+  {
+    "label": "paneLine",
+    "kind": "draw",
+    "signature": "paneLine(series, color=\"#F0B90B\", width=1.5)",
+    "doc": "Pane polyline — auto-scaled to the band Y range. Use inside `@pane \"below\"`."
+  },
+  {
+    "label": "paneDashedLine",
+    "kind": "draw",
+    "signature": "paneDashedLine(series, color, width=1, dash=4, gap=4)",
+    "doc": "Dashed pane polyline."
+  },
+  {
+    "label": "paneHline",
+    "kind": "draw",
+    "signature": "paneHline(value, color, width=1)",
+    "doc": "Horizontal line at a Y value INSIDE the pane (e.g. 70 / 30 for RSI)."
+  },
+  {
+    "label": "paneBand",
+    "kind": "draw",
+    "signature": "paneBand(upper, lower, color=\"rgba(...)\")",
+    "doc": "Filled band between two pane series — typical for OB/OS shading."
+  },
+  {
+    "label": "paneCandle",
+    "kind": "draw",
+    "signature": "paneCandle(open, high, low, close, bullColor=\"#089981\", bearColor=\"#F23645\", wickColor=, width=)",
+    "doc": "Per-bar OHLC bars in the @pane \"below\" sub-window. Same shape as plotCandle but Y maps through the pane's value-space, so OHLC-shaped histograms (e.g. 0..n_vol) live at the bottom of the chart without colliding with price. Auto-adjusts the pane Y range to fit high/low envelopes when paneRange() isn't set."
+  },
+  {
+    "label": "paneFill",
+    "kind": "draw",
+    "signature": "paneFill(series, base=0, color=\"rgba(...)\")",
+    "doc": "Histogram-style area fill between `base` (default 0) and series[i]. Use bullCol for max(hist,0) and bearCol for min(hist,0) to colour MACD positive/negative bars."
+  },
+  {
+    "label": "paneLabel",
+    "kind": "draw",
+    "signature": "paneLabel(value, text, color, size=10, align=\"right\")",
+    "doc": "Annotate a level inside the pane (e.g. paneLabel(70, \"70\"))."
+  },
+  {
+    "label": "paneRange",
+    "kind": "draw",
+    "signature": "paneRange(min, max)",
+    "doc": "Lock the pane Y axis. Without it the axis auto-fits each frame, which wobbles for fixed-range oscillators (RSI 0-100). Call once near the top of the script."
+  },
+  {
+    "label": "paneHeight",
+    "kind": "draw",
+    "signature": "paneHeight(ratio)",
+    "doc": "Fraction of candle area to reserve (0.10..0.50, default 0.25)."
+  },
+  {
+    "label": "plotLineXY",
+    "kind": "draw",
+    "signature": "plotLineXY(t1, p1, t2, p2, color=, width=, dash=, gap=, extend=)",
+    "doc": "Arbitrary trendline between (t1,p1)→(t2,p2). `extend`: \"left\"|\"right\"|\"both\"|\"up\"|\"down\" (or numeric bitmask)."
+  },
+  {
+    "label": "plotVLine",
+    "kind": "draw",
+    "signature": "plotVLine(t, color=, width=, dash=, gap=)",
+    "doc": "Vertical line at timestamp `t` — full chart height. Useful for session boundaries / news markers."
+  },
+  {
+    "label": "plotBox",
+    "kind": "draw",
+    "signature": "plotBox(t1, p1, t2, p2, bgColor=, borderColor=, width=, dashed=)",
+    "doc": "Filled + stroked rectangle in (timestamp, price) space. Pass alpha=0 in either color to skip that side. Set dashed=true for a dashed border."
+  },
+  {
+    "label": "plotLabel",
+    "kind": "draw",
+    "signature": "plotLabel(t, p, text, color=, bg=, border=, size=, align=, anchor=)",
+    "doc": "Text chip at (t, p). `anchor`: \"below\" / \"above\" / \"left\" / \"right\" (chip placement around the point with arrow tail) or \"none\" for plain chip with `align`."
+  },
+  {
+    "label": "plotPolyline",
+    "kind": "draw",
+    "signature": "plotPolyline(times, prices, color=, width=, dashed=, dash=, gap=)",
+    "doc": "Connect arbitrary world-anchored points (parallel arrays). Straight segments — no spline smoothing."
+  },
+  {
+    "label": "plotPolygon",
+    "kind": "draw",
+    "signature": "plotPolygon(times, prices, fill=, border=, width=)",
+    "doc": "Filled polygon in world coords with optional border."
+  },
+  {
+    "label": "plotArrow",
+    "kind": "draw",
+    "signature": "plotArrow(t1, p1, t2, p2, color=, width=, head=)",
+    "doc": "Arrow with triangular head from (t1,p1) to (t2,p2). `head` = head size in pixels."
+  },
+  {
+    "label": "plotShape",
+    "kind": "draw",
+    "signature": "plotShape(boolSeries, priceSeries, shape=, color=, size=)",
+    "doc": "Per-bar shape marker. `shape`: \"circle\"|\"triangleUp\"|\"triangleDown\"|\"square\"|\"diamond\"|\"cross\"|\"xcross\"|\"arrowUp\"|\"arrowDown\"."
+  },
+  {
+    "label": "plotBgColor",
+    "kind": "draw",
+    "signature": "plotBgColor(boolSeries, color=)",
+    "doc": "Translucent strip behind every truthy bar — adjacent runs are merged into one rect for performance."
+  },
+  {
+    "label": "plotChar",
+    "kind": "draw",
+    "signature": "plotChar(boolSeries, priceSeries, char, color=, size=)",
+    "doc": "Unicode glyph at each truthy bar (e.g. \"▲\" / \"▼\" / \"·\"). Use raw glyphs, not emoji."
+  },
+  {
+    "label": "panePlotLine",
+    "kind": "draw",
+    "signature": "panePlotLine(t1, v1, t2, v2, color=, width=, dash=, gap=, extend=)",
+    "doc": "World-coord trendline INSIDE the @pane \"below\" sub-window."
+  },
+  {
+    "label": "panePlotVLine",
+    "kind": "draw",
+    "signature": "panePlotVLine(t, color=, width=, dash=, gap=)",
+    "doc": "Vertical line spanning the pane height."
+  },
+  {
+    "label": "panePlotBox",
+    "kind": "draw",
+    "signature": "panePlotBox(t1, v1, t2, v2, bgColor=, borderColor=, width=, dashed=)",
+    "doc": "Pane box — same as plotBox but Y is in pane-value space."
+  },
+  {
+    "label": "panePlotLabel",
+    "kind": "draw",
+    "signature": "panePlotLabel(t, v, text, color=, bg=, border=, size=, align=, anchor=)",
+    "doc": "Pane label chip at (t, v) inside the pane sub-window."
+  },
+  {
+    "label": "labelNew",
+    "kind": "draw",
+    "signature": "labelNew(name, t, p, text, color=, bg=, border=, size=, align=, anchor=, pane=)",
+    "doc": "Persistent label chip at (t, p). `name` = stable slot id; same name across frames mutates in place."
+  },
+  {
+    "label": "boxNew",
+    "kind": "draw",
+    "signature": "boxNew(name, t1, p1, t2, p2, bgColor=, borderColor=, width=, dashed=, extend=, pane=)",
+    "doc": "Persistent rectangle. Same slot semantics as labelNew."
+  },
+  {
+    "label": "lineNew",
+    "kind": "draw",
+    "signature": "lineNew(name, t1, p1, t2, p2, color=, width=, dash=, gap=, extend=, pane=)",
+    "doc": "Persistent line. Same slot semantics as labelNew."
+  },
+  {
+    "label": "polylineNew",
+    "kind": "draw",
+    "signature": "polylineNew(name, times, prices, color=, width=, dashed=, fill=, closed=, pane=)",
+    "doc": "Persistent polyline. Re-emitted on every call (point list typically varies per frame). Same slot semantics as labelNew."
+  },
+  {
+    "label": "drawingTrendline",
+    "kind": "draw",
+    "signature": "drawingTrendline(name, t1, p1, t2, p2, color=, width=, dashed=, extend=, pane=)",
+    "doc": "Persistent trendline drawing. Same slot semantics as labelNew. Integrated with the chart-engine drawing tools (right-click delete, grip-drag, snap-to-bar)."
+  },
+  {
+    "label": "drawingHline",
+    "kind": "draw",
+    "signature": "drawingHline(name, price, color=, width=, dashed=, pane=)",
+    "doc": "Persistent horizontal price line drawing. Same slot semantics as labelNew. Integrated with the chart-engine drawing tools."
+  },
+  {
+    "label": "drawingFibRet",
+    "kind": "draw",
+    "signature": "drawingFibRet(name, t1, p1, t2, p2, color=, width=, pane=)",
+    "doc": "Persistent Fibonacci retracement drawing. Two anchor points define the 0% / 100% levels; engine renders all canonical levels between."
+  },
+  {
+    "label": "drawingChannel",
+    "kind": "draw",
+    "signature": "drawingChannel(name, t1, p1, t2, p2, t3, p3, color=, width=, pane=)",
+    "doc": "Persistent parallel channel drawing. Three anchors define the trend (1, 2) and the parallel offset (3)."
+  },
+  {
+    "label": "alertcondition",
+    "kind": "draw",
+    "signature": "alertcondition(cond, title=\"…\", message=\"…\", frequency=\"once_per_close\", name=\"…\")",
+    "doc": "Declare an alert condition. Saved into the script's `alert_manifest` on the BE; the user can wire any condition to push / Telegram / inapp from the alert builder. `frequency`: \"once_per_close\" (default) | \"once_per_bar\" | \"every\" | \"once\". `message` supports {{symbol}} {{close}} {{price}} placeholders."
+  },
+  {
+    "label": "alert",
+    "kind": "draw",
+    "signature": "alert(message, frequency=\"once_per_close\")",
+    "doc": "Imperative alert call (Pine-style). BE-evaluated; FE no-op. Use `alertcondition` for the typical declarative shape."
+  },
+  {
+    "label": "input.int",
+    "kind": "fn",
+    "signature": "input.int(default, \"Label\", minval=1, maxval=100, step=1)",
+    "doc": "Integer parameter — number stepper. minval/maxval clamp the UI; step is the increment."
+  },
+  {
+    "label": "input.float",
+    "kind": "fn",
+    "signature": "input.float(default, \"Label\", minval=0, maxval=10, step=0.1)",
+    "doc": "Decimal parameter — number stepper with float step."
+  },
+  {
+    "label": "input.bool",
+    "kind": "fn",
+    "signature": "input.bool(default, \"Label\")",
+    "doc": "Toggle switch — true / false."
+  },
+  {
+    "label": "input.string",
+    "kind": "fn",
+    "signature": "input.string(\"default\", \"Label\", options=\"a,b,c\")",
+    "doc": "Text or dropdown. Pass options=\"...\" (comma-separated) to render as a dropdown."
+  },
+  {
+    "label": "input.source",
+    "kind": "fn",
+    "signature": "input.source(\"close\", \"Source\")",
+    "doc": "Pick one of the built-in series: open / high / low / close / volume / hl2 / hlc3 / ohlc4. The value is bound to the actual series at runtime."
+  },
+  {
+    "label": "input.color",
+    "kind": "fn",
+    "signature": "input.color(\"#F0B90B\", \"Color\")",
+    "doc": "Color picker — hex (#RRGGBB[AA]) or rgba(...)."
+  },
+  {
+    "label": "input.price",
+    "kind": "fn",
+    "signature": "input.price(default, \"Label\", step=0.01)",
+    "doc": "Price-level parameter — same shape as input.float, intended for absolute price thresholds."
+  },
+  {
+    "label": "open",
+    "kind": "series",
+    "signature": "open",
+    "doc": "Open prices (number per bar)"
+  },
+  {
+    "label": "high",
+    "kind": "series",
+    "signature": "high",
+    "doc": "High prices"
+  },
+  {
+    "label": "low",
+    "kind": "series",
+    "signature": "low",
+    "doc": "Low prices"
+  },
+  {
+    "label": "close",
+    "kind": "series",
+    "signature": "close",
+    "doc": "Close prices"
+  },
+  {
+    "label": "volume",
+    "kind": "series",
+    "signature": "volume",
+    "doc": "Volume per bar"
+  },
+  {
+    "label": "hl2",
+    "kind": "series",
+    "signature": "hl2",
+    "doc": "(high + low) / 2"
+  },
+  {
+    "label": "hlc3",
+    "kind": "series",
+    "signature": "hlc3",
+    "doc": "(high + low + close) / 3"
+  },
+  {
+    "label": "ohlc4",
+    "kind": "series",
+    "signature": "ohlc4",
+    "doc": "(open + high + low + close) / 4"
+  },
+  {
+    "label": "taker_buy_volume",
+    "kind": "series",
+    "signature": "taker_buy_volume",
+    "doc": "Per-bar aggressive BUY volume (futures, from kline k[9]). Requires the CVD indicator to be enabled so the engine has the buffer; otherwise NaN. Pair with `volume` for delta math: `delta = 2*taker_buy_volume - volume`."
+  },
+  {
+    "label": "taker_sell_volume",
+    "kind": "series",
+    "signature": "taker_sell_volume",
+    "doc": "Per-bar aggressive SELL volume = `volume - taker_buy_volume`. Derived for convenience."
+  },
+  {
+    "label": "delta_volume",
+    "kind": "series",
+    "signature": "delta_volume",
+    "doc": "Per-bar volume delta = `taker_buy_volume - taker_sell_volume`. Positive = net aggressive buying, negative = net aggressive selling. Same series the built-in CVD pane reads from when source = futures."
+  },
+  {
+    "label": "cvd",
+    "kind": "series",
+    "signature": "cvd",
+    "doc": "Cumulative Volume Delta (futures source) = running sum of `delta_volume`. Use for CVD-vs-price divergence: bullish when price makes lower low but `cvd` makes higher low."
+  },
+  {
+    "label": "open_interest",
+    "kind": "series",
+    "signature": "open_interest",
+    "doc": "Bar-aligned Open Interest close (sumOpenInterest from Binance). Requires the OI / OI×CVD pattern / Liq-heatmap indicator to be enabled so the OI fetcher runs; otherwise NaN."
+  },
+  {
+    "label": "oi_delta",
+    "kind": "series",
+    "signature": "oi_delta",
+    "doc": "Per-bar ΔOI = `open_interest - open_interest[1]`. Positive = new positions opened, negative = positions closed. The first bar is NaN (no prior reference)."
+  },
+  {
+    "label": "funding_rate",
+    "kind": "series",
+    "signature": "funding_rate",
+    "doc": "Bar-aligned Binance funding rate (in percent: `0.01` == 0.01 %). Available once funding-rate data has been fetched for the symbol. Forward-filled between settlement events so the series is dense."
+  },
+  {
+    "label": "bar_index",
+    "kind": "series",
+    "signature": "bar_index",
+    "doc": "Series of bar indices [0, 1, …, bars-1]"
+  },
+  {
+    "label": "time",
+    "kind": "series",
+    "signature": "time",
+    "doc": "Series of bar timestamps in seconds since epoch (engine X-axis units; drawing primitives like `lineNew`/`boxNew`/`labelNew` consume the same unit). Calendar helpers (`year`, `month`, `dayofmonth`, `hour`, …) auto-rescale seconds → ms internally, so `dayofmonth(time)` works without a manual `* 1000`."
+  },
+  {
+    "label": "bars",
+    "kind": "series",
+    "signature": "bars",
+    "doc": "Total bar count (scalar — not a series)"
+  },
+  {
+    "label": "last_bar_index",
+    "kind": "series",
+    "signature": "last_bar_index",
+    "doc": "Scalar index of the rightmost loaded bar (= bars - 1). Use with `at(close, last_bar_index)` to read the latest value of a series, or pass to world-coord draws."
+  },
+  {
+    "label": "last_bar_time",
+    "kind": "series",
+    "signature": "last_bar_time",
+    "doc": "Scalar timestamp (ms) of the rightmost loaded bar. Equivalent to `at(time, last_bar_index)`. Pass to plotLabel / lineNew / plotVLine to anchor at the live bar."
+  },
+  {
+    "label": "first_bar_time",
+    "kind": "series",
+    "signature": "first_bar_time",
+    "doc": "Scalar timestamp (ms) of the oldest loaded bar. Equivalent to `at(time, 0)`."
+  },
+  {
+    "label": "barstate_islast",
+    "kind": "series",
+    "signature": "barstate_islast",
+    "doc": "Boolean series, true only at the rightmost bar (`i == bars - 1`). Pine equivalent: `barstate.islast`. Gates one-off draws / labels / markers to the live bar without `bar_index == bars - 1` boilerplate."
+  },
+  {
+    "label": "pi",
+    "kind": "series",
+    "signature": "pi",
+    "doc": "Math.PI ≈ 3.14159…"
+  },
+  {
+    "label": "e",
+    "kind": "series",
+    "signature": "e",
+    "doc": "Math.E ≈ 2.71828…"
+  },
+  {
+    "label": "na",
+    "kind": "series",
+    "signature": "na",
+    "doc": "NaN constant — `iff(cond, value, na)` masks bars to NaN"
+  },
+  {
+    "label": "true",
+    "kind": "keyword",
+    "signature": "true",
+    "doc": "Boolean literal"
+  },
+  {
+    "label": "false",
+    "kind": "keyword",
+    "signature": "false",
+    "doc": "Boolean literal"
+  },
+  {
+    "label": "and",
+    "kind": "keyword",
+    "signature": "a and b",
+    "doc": "Boolean AND"
+  },
+  {
+    "label": "or",
+    "kind": "keyword",
+    "signature": "a or b",
+    "doc": "Boolean OR"
+  },
+  {
+    "label": "not",
+    "kind": "keyword",
+    "signature": "not x",
+    "doc": "Boolean NOT"
+  },
+  {
+    "label": "if",
+    "kind": "keyword",
+    "signature": "if cond  /  elseif cond  /  else  /  end",
+    "doc": "Block-level branch (script-eval-time). For per-bar gating use iff(...) or mask(...) instead."
+  },
+  {
+    "label": "elseif",
+    "kind": "keyword",
+    "signature": "elseif cond",
+    "doc": "Additional branch in an if-block."
+  },
+  {
+    "label": "else",
+    "kind": "keyword",
+    "signature": "else",
+    "doc": "Fallback branch in an if-block."
+  },
+  {
+    "label": "end",
+    "kind": "keyword",
+    "signature": "end",
+    "doc": "Close the most recent if / for / fn block."
+  },
+  {
+    "label": "for",
+    "kind": "keyword",
+    "signature": "for i = a to b [step k]",
+    "doc": "Scalar-counter loop. Body runs at script-eval time but expressions can build series via shift(...) so accumulators end up vector-shaped."
+  },
+  {
+    "label": "to",
+    "kind": "keyword",
+    "signature": "for i = a to b",
+    "doc": "Range terminator inside a for-loop."
+  },
+  {
+    "label": "fn",
+    "kind": "keyword",
+    "signature": "fn name(a, b) = <expr>  OR  fn name(a, b) =  …  return <expr>  end",
+    "doc": "User-defined function. Inline form returns the rhs expression; block form requires a `return` and a closing `end`."
+  },
+  {
+    "label": "return",
+    "kind": "keyword",
+    "signature": "return <expr>",
+    "doc": "Return a value from the enclosing fn body."
+  },
+  {
+    "label": "@version",
+    "kind": "directive",
+    "signature": "@version 1",
+    "doc": "Pin the script to a specific Delta DSL language version. Defaults to v1 when omitted, so every legacy script keeps working. Bump only when the runtime ships a higher version AND you want to opt INTO the new behaviour. Must appear before any executable statement (place it on the first non-blank line). Accepts both `@version 1` (canonical) and `@version \"1\"` (string form alias)."
+  },
+  {
+    "label": "@name",
+    "kind": "directive",
+    "signature": "@name \"Display Name\"",
+    "doc": "Indicator display name (one per file)"
+  },
+  {
+    "label": "@input",
+    "kind": "directive",
+    "signature": "@input <name> = <default>",
+    "doc": "Declare a tweakable parameter. Use a literal for shorthand, or a typed builder (input.int / input.float / input.bool / input.string / input.source / input.color / input.price) for full control over the settings UI."
+  },
+  {
+    "label": "@pane",
+    "kind": "directive",
+    "signature": "@pane \"overlay\"  // or \"below\"",
+    "doc": "Where the indicator renders. \"overlay\" (default) draws on the candle pane in price space; use plotLine/plotHline/plotBand. \"below\" reserves a band at the bottom of the candle area; use paneLine/paneHline/paneBand/paneFill + paneRange/paneHeight. See Samples → \"RSI (sub-pane)\"."
+  }
+]

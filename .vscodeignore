@@ -4,6 +4,7 @@
 .vscode/**
 .vscode-test/**
 samples/**
+scripts/**
 **/*.map
 **/.DS_Store
 **/node_modules/**

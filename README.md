@@ -7,6 +7,17 @@ editor support.
 
 ## Features
 
+### IntelliSense
+
+- **Hover documentation** — hover any builtin function, drawing
+  primitive, series, or input builder to see its signature and a
+  short description.
+- **Autocomplete** — `Ctrl+Space` suggests every builtin from the
+  runtime catalog along with its signature and doc-string. User
+  variables and `@input` declarations appear at the top of the list.
+- **Signature help** — typing `fn(` opens a parameter popup that
+  highlights the active argument as you advance past commas.
+
 ### Syntax highlighting
 
 Full TextMate grammar covering every construct of the language:
@@ -128,10 +139,9 @@ your editor theme.
 
 Planned for upcoming releases:
 
-- Hover documentation for built-in functions
-- Signature help while typing arguments
 - Inline diagnostics for unknown identifiers
-- Auto-completion driven by the runtime catalog
+- Go to definition for user-declared symbols
+- File icon contribution to popular icon themes
 
 ## Building from source
 
