@@ -2,7 +2,7 @@
   "name": "deltadsl",
   "displayName": "DeltaDSL — MRD Indicator Script",
   "description": "Syntax highlighting + snippets for DeltaDSL (.dsl) — the indicator scripting language of MRD Indicators.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "publisher": "mrd",
   "license": "SEE LICENSE IN LICENSE.txt",
   "icon": "icon.png",

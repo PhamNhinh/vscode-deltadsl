@@ -2,6 +2,14 @@
 
 All notable changes to the **DeltaDSL** VSCode extension are recorded here.
 
+## [0.1.1] — 2026-05-27
+
+### Changed
+- Rewrote `README.md` for marketplace listings — clearer install steps,
+  features summary, build-from-source guide.
+- Added `repository`, `bugs`, `homepage` fields in `package.json`
+  pointing to the public source repo.
+
 ## [0.1.0] — 2026-05-27
 
 ### Added
